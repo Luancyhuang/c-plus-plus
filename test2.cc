@@ -1,35 +1,39 @@
 #include <iostream>
-
 using namespace std;
 
-class TDate
+#include <string>
+
+class Solution
 {
-	private:
-		int year;
-		int month;
-		int day;
-	public:
-		TDate(int y=0,int m =0,int d = 0)
-		{
-		  year = y;
-		  month = m;
-		  day = d;
-		}
-		void print()
-		{
-		  cout << day << '/' << month << '/' << year << endl;
-		
-		}
+public:
+  int firstUniqChar(string s)
+  {
+    int CountArr[26] = {0};
+
+    for(size_t i = 0; i < s.size(); ++i)
+    {
+      CountArr[s[i] - 'a']++;    
+    }
+
+    for(int j = 0; j < s.size(); ++j)
+    {
+      if(CountArr[s[j] - 'a'] == 1)       
+      {
+        return j;    
+      }
+    }    
+    return -1;  
+  }
 };
+
 
 int main()
 {
-  int year = 0;
-  int month = 0;
-  int day = 0;
-  cin >> year >> month >> day;
-  TDate d(year,month,day);
-  //输出
-  d.print();
+  string s("aabb");
+
+  cout << Solution().firstUniqChar(s) << endl;
+
+
   return 0;
 }
+
